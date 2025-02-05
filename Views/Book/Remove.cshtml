@@ -5,9 +5,11 @@
     class="book-form"
     method="post"
     asp-controller="Book"
-    asp-action="Remove"   
+    asp-action="Remove"  
 >    
-    <input value="@Model.Book.Id" />
+    <div>
+    Are you sure you want to delete the book?
+    </div>
     <button    
     class="btn btn-danger"
     asp-controller="Book"
