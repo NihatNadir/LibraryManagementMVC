@@ -1,0 +1,109 @@
+@model BookViewModel
+
+<h3 class="mt-5">Add Book</h3>
+<form 
+class="book-form"
+method="post"
+asp-controller="Book"
+asp-action="Create"
+>
+
+    <div class="mb-3 title">
+        <label>Title</label>
+        <input type="text" class="form-control"
+        asp-for="Book.Title"
+         />
+        <span 
+        asp-validation-for="Book.Title" 
+        class="text-danger fw-bold"
+        ></span>
+    </div>
+
+    <div class="mb-3 author">
+        <label>Genre</label>
+        <select 
+        class="form-control"   
+        asp-for="Genres"      
+        asp-items="@(new SelectList(ViewBag.GenreList,"Id","Name"))"
+        multiple="multiple"
+        >
+        <option selected disabled>Select</option>
+        </select>
+        <span         
+        class="text-danger fw-bold"
+        asp-for="Genres"
+        ></span>
+    </div>
+
+    <div class="mb-3 publish-date">
+        <label>Publish Date</label>
+        <input type="date" class="form-control date" 
+         asp-for="Book.PublishDate"
+        />
+         <span 
+        asp-validation-for="Book.PublishDate" 
+        class="text-danger fw-bold"
+        ></span>
+    </div>
+
+    <div class="mb-3 isbn">
+        <label>ISBN Number</label>
+        <input type="text" class="form-control" 
+         asp-for="Book.ISBN"
+        />
+         <span 
+        asp-validation-for="Book.ISBN" 
+        class="text-danger fw-bold"
+        ></span>
+    </div>
+
+    <div class="mb-3 copies-available">
+        <label>Quantity</label>
+        <input type="number" class="form-control copy" 
+         asp-for="Book.CopiesAvailable"
+         
+        />
+         <span 
+        asp-validation-for="Book.CopiesAvailable" 
+        class="text-danger fw-bold"
+        ></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Book.Price" class="form-label">Price</label>
+        <input asp-for="Book.Price" class="form-control" type="number" step="0.01" min="0.01" max="1000000" />
+        <span asp-validation-for="Book.Price" class="text-danger fw-bold"></span>
+    </div>
+@if(ViewBag.Authors != null )
+{
+    <div class="mb-3 author">
+        <label>Author</label>
+        <select 
+        class="form-control" 
+        asp-for="Book.AuthorId"
+        asp-items="@(new SelectList(ViewBag.Authors,"Id","FullName"))">
+        <option selected disabled>Select</option>
+        </select>
+        <span 
+        asp-validation-for="Book.AuthorId" 
+        class="text-danger fw-bold"
+        ></span>
+    </div>
+}else{
+    <div class="mb-3 publish-date">
+        <label>Author</label>
+        <input type="number" class="form-control date" 
+         asp-for="Book.AuthorId"
+        />
+         <span 
+        asp-validation-for="Book.AuthorId" 
+        class="text-danger fw-bold"
+        ></span>
+    </div>
+}
+    <button 
+    type="submit" 
+    class="btn btn-primary mt-3 submit"   
+    >Add</button>
+
+</form>

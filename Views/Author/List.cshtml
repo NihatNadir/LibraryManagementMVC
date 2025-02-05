@@ -1,0 +1,70 @@
+@model List<AuthorEntity>
+@{
+    var userRole = ViewBag.UserRole as UserRole?;
+    var user = ViewBag.User as UserEntity; 
+}
+
+<h3 class="mt-5">Author List</h3>
+
+@if (userRole == UserRole.Admin)
+{
+    <div style="">
+    <p>Token expires in: <span class="expireTime"></span></p>
+</div>
+    <p>Welcome to the Admin Panel, <strong>@user.FirstName!</strong></p>
+    <a asp-controller="Author" asp-action="Create" class="btn btn-primary">Add Author</a>
+}
+else if (userRole == UserRole.User)
+{
+    <div style="">
+    <p>Token expires in: <span class="expireTime"></span></p>
+</div>
+    <p>Welcome, <strong>@user.FirstName!</strong></p>
+}
+
+
+<div class="author-container">
+   
+    <div class="mt-5" style="">
+        <div class="row g-0">          
+                @foreach (var item in Model)
+                {
+                    <div class="content">
+                        <div class="col-md-4">
+                        <a 
+                        asp-controller="Author"
+                        asp-action="Details"
+                        asp-route-id="@item.Id"
+                        >
+                            <img
+                                src="https://picsum.photos/id/@item.Id/300"
+                                class="card-img-top"
+                                alt="..."
+                                style="width:240px; height:200px"
+                                >
+                        </a>
+                        </div>
+                        
+                         <div class="col-md-8">
+                          <a 
+                          asp-controller="Author"
+                            asp-action="Details"
+                            asp-route-id="@item.Id"
+                
+                          >
+                            <div>
+                             @item.FullName
+                            </div>
+                             <div>
+                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                            </div>
+                            </a>
+                        </div>
+                        
+                    </div>                    
+                }
+           
+        </div>
+    </div>
+
+</div>

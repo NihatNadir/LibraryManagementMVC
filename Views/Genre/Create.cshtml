@@ -1,0 +1,61 @@
+@model GenreEntity
+
+@{
+    var userRole = ViewBag.UserRole as UserRole?;
+    var user = ViewBag.User as UserEntity; 
+}
+<h3 class="mt-5">Add Genre</h3>
+@if (userRole == UserRole.Admin)
+{
+    <div style="">
+    <p>Token expires in: <span class="expireTime"></span></p>
+</div>
+    <p>Welcome to the Admin Panel, <strong>@user.FirstName!</strong></p>
+    <form 
+class="book-form"
+method="post"
+asp-controller="Genre"
+asp-action="Create"
+>
+    <div class="mb-3 publish-date">
+        <label>Genre</label>
+        <input type="text" class="form-control date" 
+         asp-for="Name"
+        />
+         <span 
+        asp-validation-for="Name" 
+        class="text-danger fw-bold"
+        ></span>
+    </div>
+
+    <button 
+    type="submit" 
+    class="btn btn-primary submit"   
+    >Add</button>
+    <a 
+            class="btn btn-secondary submit"
+            id="deleteButton"   
+            asp-controller="Home"
+            asp-action="List">                       
+                Return to List
+            </a>
+
+</form>
+}
+else if (userRole == UserRole.User)
+{
+    <div style="">
+    <p>Token expires in: <span class="expireTime"></span></p>
+</div>
+    <p>Welcome, <strong>@user.FirstName!</strong></p>
+      <a 
+            class="btn btn-secondary submit"
+            id="deleteButton"   
+            asp-controller="Home"
+            asp-action="List">                       
+                Return to List
+            </a>
+}
+
+
+

@@ -1,0 +1,23 @@
+@model BookViewModel
+
+<h3 class="mt-5">Delete Book</h3>
+<form 
+    class="book-form"
+    method="post"
+    asp-controller="Book"
+    asp-action="Remove"   
+>    
+    <input value="@Model.Book.Id" />
+    <button    
+    class="btn btn-danger"
+    asp-controller="Book"
+    asp-action="Remove" 
+    asp-route-id="@Model.Book.Id"
+    >Yes</button>
+    
+    <a 
+    class="btn btn-primary"
+    >
+    No
+    </a>
+</form>

@@ -1,0 +1,74 @@
+@model BookViewModel
+@{
+    var userRole = ViewBag.UserRole as UserRole?;
+    var user = ViewBag.User as UserEntity; 
+}
+
+<h3 class="mt-5">Book Details</h3>
+
+<div class="book-container">
+    <div class="card w-full" style="">
+        <div style="display:flex; justify-content: center;">
+            <img
+            src="..."
+            class="card-img-top"
+            alt="..."
+            style="width:18rem;"
+            >
+        </div>      
+            <h5 class="card-title text-center mt-2">@Model.Book?.Title</h5>            
+                <ul class="list-group">
+                    <li class="list-group-item">Book Id: @Model.Book?.Id</li>
+
+                <li class="list-group-item">Book Genre: 
+                    @foreach (var genre in Model.GenreList)
+                    {
+                        <span>@genre.Name</span>
+                        @if (genre != Model.GenreList.Last()) { <span>,</span> }
+                    }
+                </li>
+                <li class="list-group-item">Author:@ViewBag.Author.FullName</li>
+                <li class="list-group-item">Publish Date: @Model.Book.PublishDate.ToString("dd.MM.yyyy")</li>
+                <li class="list-group-item">Copies Available: @Model.Book.CopiesAvailable</li>
+                <li class="list-group-item">ISBN: @Model.Book?.ISBN</li>
+                <li class="list-group-item">Price: @Model.Book?.Price</li>
+                </ul>
+            
+            <button
+            class="btn btn-primary"
+            >Add to Cart</button>
+@if (userRole == UserRole.Admin)
+{
+            <a class="btn btn-success submit"
+               asp-controller="Book"
+               asp-action="Edit"
+               asp-route-id="@Model.Book.Id">
+                Edit
+            </a>
+            <a 
+            class="btn btn-danger submit"
+            id="deleteButton"   
+            asp-controller="Book"
+            asp-action="Remove"
+            asp-route-id="@Model.Book.Id">            
+                Delete
+            </a>
+            <a 
+            class="btn btn-secondary submit"              
+            asp-controller="Book"
+            asp-action="List">                       
+                Return to List
+            </a>
+}else{
+    <a 
+            class="btn btn-secondary submit"
+            id="deleteButton"   
+            asp-controller="Book"
+            asp-action="List">                       
+                Return to List
+            </a>
+}
+        </div>
+    </div>
+</div>
+

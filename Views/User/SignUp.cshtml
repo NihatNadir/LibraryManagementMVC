@@ -1,0 +1,117 @@
+@model SignUpViewModel
+
+@{
+    var successMessage = ViewData["SuccessMessage"];
+    var emailExists = ViewData["EmailExists"];
+}
+
+<div class="mt-5">
+
+    <div class="col-6 mx-auto" style="width:60%">
+
+        <div class="card">
+
+            <div class="card-header fw-bold fs-4 text-center">
+                Sign-Up Form
+            </div>
+
+        @if (successMessage != null || emailExists is not null)
+        {
+            <div id="toast" class="toast align-items-center text-bg-success border-0 position-fixed top-0 end-0 m-3" role="alert" data-bs-delay="10000" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Success</strong>
+                    <small>just now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body mt-2 pt-2 ">
+                    @successMessage
+                    @emailExists
+                    <a
+                    class="btn btn-primary mt-2"
+                    asp-controller="User"
+                    asp-action="Login"
+                    >Sign In</a>
+                </div>
+            </div>
+        }
+
+            <div class="m-4">
+                <form 
+                class="user-form"
+                method="post"
+                asp-controller="User"
+                asp-action="Signup"
+                >
+                    <div class="mb-3 title">
+                        <label>Enter Your First Name</label>
+                        <input type="text" class="form-control"
+                        asp-for="FirstName"
+                        />
+                        <span 
+                        asp-validation-for="FirstName" 
+                        class="text-danger fw-bold"
+                        ></span>
+                    </div>
+                    <div class="mb-3 title">
+                        <label>Enter Your Last Name</label>
+                        <input type="text" class="form-control"
+                        asp-for="LastName"
+                        />
+                        <span 
+                        asp-validation-for="LastName" 
+                        class="text-danger fw-bold"
+                        ></span>
+                    </div>
+                    <div class="mb-3 title">
+                        <label>Enter Your Email Address</label>
+                        <input type="email" class="form-control"
+                        asp-for="Email"
+                        />
+                        <span 
+                        asp-validation-for="Email" 
+                        class="text-danger fw-bold"
+                        ></span>
+                    </div>
+                    <div class="mb-3 title">
+                        <label>Password</label>
+                        <input type="password" class="form-control"
+                        asp-for="Password"
+                        />
+                        <span 
+                        asp-validation-for="Password" 
+                        class="text-danger fw-bold"
+                        ></span>
+                    </div>
+                    <div class="mb-3 title">
+                        <label>Re-enter Password</label>
+                        <input type="password" class="form-control"
+                        asp-for="PasswordConfirmed"
+                        />
+                        <span 
+                        asp-validation-for="PasswordConfirmed" 
+                        class="text-danger fw-bold"
+                        ></span>
+                    </div>
+                    <div class="mb-3 title">
+                        <label>Enter Your Phone Number (optional)</label>
+                        <input type="tel" class="form-control"
+                        asp-for="PhoneNumber"
+                        />
+                        <span 
+                        asp-validation-for="PhoneNumber" 
+                        class="text-danger fw-bold"
+                        ></span>
+                    </div>
+
+
+                    <button 
+                    type="submit" 
+                    class="btn btn-primary"                    
+                    >Sign Up</button>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>

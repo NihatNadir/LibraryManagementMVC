@@ -1,0 +1,94 @@
+﻿@model HomeListViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+ <p style="display:hidden">Token expires in: <span class="expireTime"></span></p>
+@if (Model.IsAuthenticated)
+{
+     <div class="">
+        <h1 class="mt-5">Welcome</h1>        
+        
+        <div class="container">
+            <h3>Books</h3>
+            <div class="row">
+            
+                @foreach (var book in Model.BookList)
+                    {
+                        <div class="content">
+                
+                         <div class="col-md-8">
+                          <a asp-action="Details" asp-controller="Book" asp-route-id="@book.Id"
+                
+                          >
+                            <div>
+                             @book.Title
+                            </div>
+                             <div>
+                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                            </div>
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                        <a asp-action="Details" asp-controller="Book" asp-route-id="@book.Id">
+                            <img
+                                src="https://picsum.photos/id/@book.Id/300"
+                                class="card-img-top"
+                                alt="..."
+                                style="width:240px; height:200px"
+                                >
+                        </a>
+                        </div>
+                    </div>
+                    }
+            
+            </div>   
+
+            <h3>Authors</h3>
+             <div class="row">
+            
+                @foreach (var author in Model.AuthorList)
+                    {
+                        <div class="content">
+                            <div class="col-md-4">
+                            <a asp-action="Details"     asp-controller="Author"   asp-route-id="@author.Id">
+                                <img
+                                    src="https://picsum.photos/id/@author.Id/300"
+                                    class="card-img-top"
+                                    alt="..."
+                                    style="width:240px;     height:200px"
+                                    >
+                            </a>
+                            </div>    
+                         <div class="col-md-8">
+                          <a asp-action="Details" asp-controller="Author" asp-route-id="@author.Id"
+                
+                          >
+                            <div>
+                             @author.FullName
+                            </div>
+                             <div>
+                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                            </div>
+                            </a>
+                        </div>                        
+                    </div>
+                    }
+            
+            </div>
+                
+        </div>
+    </div>
+}
+else{
+    <div class="text-center ">
+        <h1 class="mt-5">Welcome</h1>
+        <div class="container text-center">        
+            <div class="links container">
+                <a asp-controller="User" asp-action="Login"     class="btn btn-lg">Sign In</a>
+                <a asp-controller="User"    asp-action="SignUp" class="btn btn-secondary btn-lg">Sign Up</a>
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,44 @@
+<nav 
+class="navbar navbar-expand-lg text-bg-warning"
+>
+    <div class="container-fluid">
+        <a class="navbar-brand rounded px-2" href="\">MVCLibraryProject</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
+        
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+         <div>
+        <form class="d-flex" role="search"
+        method="get" 
+        asp-action="Search" 
+        asp-controller="Home"
+        >
+            <input 
+            class="form-control me-2" 
+            type="search" 
+            placeholder="Search" 
+            aria-label="Search"
+            name="searchTerm"
+            >
+            <button class="btn" type="submit">Search</button>
+        </form>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNav"
+        style="align-items:center;justify-content:space-between;
+        flex-grow:0;"
+        >
+       
+            
+        <div style="display:flex; gap:8px;align-items:center; justify-content:space-between">
+            <a class="active rounded px-2 py-2" aria-current="page" href="\">Home</a>
+            <a class="rounded px-4 py-2" asp-controller="Author" asp-action="List">Authors</a>
+            <a class="rounded px-4 py-2" asp-controller="Book" asp-action="List">Books</a>            
+            <a class="rounded px-4 py-2" asp-controller="Genre" asp-action="Create">Genre</a>
+            <a class="rounded px-4 py-2" asp-controller="User" asp-action="Logout">Sign out</a>                                    
+                                        
+        </div>
+           
+        </div>
+    </div>
+</nav>

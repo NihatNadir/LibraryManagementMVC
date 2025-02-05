@@ -1,0 +1,25 @@
+@model AuthorEntity
+
+<h3 class="mt-5">Delete Author</h3>
+<form 
+    class="book-form"
+    method="post"
+    asp-controller="Author"
+    asp-action="Remove"   
+>    
+    <div>
+    Kitabı silmek istediğinizden emin misiniz
+    </div>
+    <button    
+    class="btn btn-danger"
+    asp-controller="Author"
+    asp-action="Remove" 
+    asp-route-id="@Model.Id"
+    >Yes</button>
+    
+    <a 
+    class="btn btn-primary"
+    >
+    No
+    </a>
+</form>

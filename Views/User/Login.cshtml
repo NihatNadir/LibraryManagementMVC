@@ -1,0 +1,83 @@
+@model SignInViewModel
+
+@{
+    var loginMessage = ViewData["LoginMessage"];
+}
+
+<div class="mt-5 toast-header">
+
+    <div class="col-6 mx-auto my-4" style="width:60%;">
+
+        <div class="card">
+
+            <div class="card-header fw-bold fs-4 text-center my-4">
+                Sign-In Form
+            </div>
+
+             @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="mx-4 my-2 alert alert-danger">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <p>@error.ErrorMessage</p>
+                }
+            </div>
+        }
+
+        @if (loginMessage != null)
+        {
+            <div id="toast" class="toast align-items-center text-bg-success border-0 position-fixed top-0 end-0 m-3" role="alert" data-bs-delay="10000" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <strong class="me-auto">Success</strong>
+                    <small>just now</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body mt-2 pt-2 ">
+                    @loginMessage                   
+                    <a
+                    class="btn btn-primary mt-2"
+                    asp-controller="User"
+                    asp-action="Login"
+                    >Sign In</a>
+                </div>
+            </div>
+        }
+
+            <div class="m-4">
+                <form 
+                class="user-form"
+                method="post"
+                asp-controller="User"
+                asp-action="Login"
+                >
+                    <div class="mb-3 title">
+                        <label>Enter Your Email Address</label>
+                        <input type="email" class="form-control"
+                        asp-for="Email"
+                        />
+                        <span 
+                        asp-validation-for="Email" 
+                        class="text-danger fw-bold"
+                        ></span>
+                    </div>
+
+                    <div class="mb-3 title">
+                        <label>Enter Your Password</label>
+                        <input type="password" class="form-control"
+                        asp-for="Password"
+                        />
+                        <span 
+                        asp-validation-for="Password" 
+                        class="text-danger fw-bold"
+                        ></span>
+                    </div>
+                    
+                    <button type="submit" class="btn ">Login</button>
+                    <a asp-controller="User" asp-action="SignUp" class="btn ">Sign Up</a>
+                        </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>

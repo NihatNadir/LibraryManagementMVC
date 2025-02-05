@@ -1,0 +1,21 @@
+@model AuthorEntity
+
+<h3 class="mt-5">Edit Author</h3>
+<form 
+    class="author-form"
+    method="post"
+    asp-controller="Author"
+    asp-action="Edit"   
+>    
+    <div class="mb-3 title">
+        <label>FullName</label>
+        <input 
+        type="text" 
+        class="form-control"
+        asp-for="FullName" />
+        <span asp-validation-for="FullName" class="text-danger fw-bold"></span>
+    </div>       
+
+    <button type="submit" class="btn btn-primary mt-3 submit">Update</button>
+
+</form>

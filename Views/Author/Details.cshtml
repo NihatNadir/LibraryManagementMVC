@@ -1,0 +1,58 @@
+@model AuthorEntity
+@{
+    var userRole = ViewBag.UserRole as UserRole?;
+    var user = ViewBag.User as UserEntity; 
+}
+
+<h3 class="mt-5">Author Details</h3>
+
+
+<div class="author-container">
+    <div class="card w-full" style="">
+        <div style="display:flex; justify-content: center;">
+            <img
+            src="..."
+            class="card-img-top"
+            alt="..."
+            style="width:18rem;"
+            >
+        </div>      
+            <h5 class="card-title text-center mt-2">@Model.FullName</h5>            
+                <ul class="list-group">
+                    <li class="list-group-item">Yazar Id: @Model.Id</li>                   
+                    
+                </ul>          
+            @if (userRole == UserRole.Admin)
+{
+            <a class="btn btn-success submit"
+               asp-controller="Author"
+               asp-action="Edit"
+               asp-route-id="@Model.Id">
+                Edit
+            </a>
+            <a 
+            class="btn btn-danger submit"
+            id="deleteButton"   
+            asp-controller="Author"
+            asp-action="Remove"
+            asp-route-id="@Model.Id">            
+                Delete
+            </a>
+             <a 
+            class="btn btn-secondary submit"             
+            asp-controller="Author"
+            asp-action="List">                       
+                Return to List
+            </a>
+}else{
+    <a 
+            class="btn btn-secondary submit"
+            id="deleteButton"   
+            asp-controller="Author"
+            asp-action="List">                       
+                Return to List
+            </a>
+}
+        </div>
+    </div>
+</div>
