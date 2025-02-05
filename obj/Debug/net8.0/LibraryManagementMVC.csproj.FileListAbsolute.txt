@@ -167,3 +167,4 @@ E:\Record\FullStackTechCareer\LibraryManagementMVC\bin\Debug\net8.0\runtimes\win
 E:\Record\FullStackTechCareer\LibraryManagementMVC\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
 E:\Record\FullStackTechCareer\LibraryManagementMVC\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 E:\Record\FullStackTechCareer\LibraryManagementMVC\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
+E:\Record\FullStackTechCareer\LibraryManagementMVC\obj\Debug\net8.0\LibraryManagementMVC.sourcelink.json
